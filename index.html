@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mano Brownie | Sem caô, só brownie</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            950: '#070b16',
+                            900: '#0b132b',
+                            800: '#0d1b2a',
+                            700: '#1b263b',
+                            600: '#2a385b'
+                        },
+                        cream: {
+                            100: '#ffffff',
+                            200: '#f7f7f0',
+                            300: '#f4f1de',
+                            400: '#e0dacb'
+                        },
+                        chocolate: {
+                            400: '#f4a261',
+                            500: '#e76f51',
+                            600: '#c85a32',
+                            700: '#8d3b1b'
+                        },
+                        streetYellow: '#ffb703'
+                    },
+                    fontFamily: {
+                        street: ['"Permanent Marker"', 'cursive'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070b16;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e76f51;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f4a261;
+        }
+
+        .street-text-shadow {
+            text-shadow: 4px 4px 0px #e76f51, -2px -2px 0px #070b16;
+        }
+
+        .street-badge {
+            transform: rotate(-3deg);
+            box-shadow: 3px 3px 0px #ffb703;
+        }
+
+        .brush-underline {
+            background-image: linear-gradient(120deg, #e76f51 0%, #ffb703 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 30%;
+            background-position: 0 88%;
+        }
+
+        /* Subtle grid background pattern */
+        .bg-grid-pattern {
+            background-image: radial-gradient(rgba(244, 162, 97, 0.15) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-navy-950 text-cream-200 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-chocolate-500 selection:text-navy-950">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-navy-900/95 backdrop-blur-md border-b border-chocolate-500/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="relative w-11 h-11 bg-chocolate-500 rounded-xl flex items-center justify-center transform -rotate-3 group-hover:rotate-0 transition-transform shadow-lg shadow-chocolate-500/20">
+                    <i class="fa-solid fa-cookie-bite text-navy-950 text-2xl"></i>
+                    <span class="absolute -top-2.5 -right-2 bg-streetYellow text-navy-950 text-[10px] font-black px-1.5 py-0.5 rounded street-badge border border-navy-950">
+                        <i class="fa-solid fa-hat-cowboy-side"></i> MANO
+                    </span>
+                </div>
+                <div>
+                    <span class="font-street text-2xl sm:text-3xl tracking-wider text-cream-200 block leading-none">MANO</span>
+                    <span class="text-xs font-black tracking-widest text-chocolate-400 block uppercase">BROWNIE</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-bold">
+                <a href="#inicio" class="hover:text-chocolate-400 transition-colors">Início</a>
+                <a href="#sobre" class="hover:text-chocolate-400 transition-colors">Nossa História</a>
+                <a href="#catalogo" class="hover:text-chocolate-400 transition-colors">Catálogo Completo</a>
+                <a href="#encomendar" class="hover:text-chocolate-400 transition-colors">Onde Encontrar</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button onclick="toggleMobileMenu()" class="md:hidden text-cream-200 text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-navy-900 border-b border-chocolate-500/20 px-4 pt-2 pb-6 space-y-3">
+            <a href="#inicio" onclick="toggleMobileMenu()" class="block py-2 border-b border-navy-800 font-bold hover:text-chocolate-400">Início</a>
+            <a href="#sobre" onclick="toggleMobileMenu()" class="block py-2 border-b border-navy-800 font-bold hover:text-chocolate-400">Nossa História</a>
+            <a href="#catalogo" onclick="toggleMobileMenu()" class="block py-2 border-b border-navy-800 font-bold hover:text-chocolate-400">Catálogo Completo</a>
+            <a href="#encomendar" onclick="toggleMobileMenu()" class="block py-2 font-bold hover:text-chocolate-400">Onde Encontrar</a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section id="inicio" class="relative overflow-hidden py-16 lg:py-28 bg-gradient-to-b from-navy-900 via-navy-900 to-navy-950 border-b border-navy-800 bg-grid-pattern">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    
+                    <!-- Text Content -->
+                    <div class="space-y-6 text-center md:text-left">
+                        <div class="inline-flex items-center gap-2 bg-chocolate-500/10 border border-chocolate-500/30 px-3.5 py-1.5 rounded-full text-chocolate-400 text-xs sm:text-sm font-bold uppercase tracking-wider">
+                            <i class="fa-solid fa-fire text-streetYellow"></i> Sejam Bem-Vindos!!
+                        </div>
+                        
+                        <h1 class="text-4xl sm:text-6xl font-black tracking-tight">
+                            <span class="block font-street text-cream-200 text-5xl sm:text-7xl street-text-shadow transform -rotate-1 mb-2">MANO BROWNIE</span>
+                            <span class="text-chocolate-400 font-street text-3xl sm:text-4xl block italic mt-1">"SEM CAÔ, SÓ BROWNIE"</span>
+                        </h1>
+                        
+                        <p class="text-cream-400 text-base sm:text-lg max-w-xl mx-auto md:mx-0 leading-relaxed">
+                            Nós buscamos ser uma marca brasileira reconhecida por sua qualidade, autenticidade e capacidade de transformar produtos em experiências que fazem parte do dia a dia das pessoas.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-2">
+                            <a href="#catalogo" class="bg-chocolate-500 hover:bg-chocolate-600 text-navy-950 font-black px-8 py-4 rounded-xl shadow-xl shadow-chocolate-500/20 transition-all transform hover:-translate-y-1 text-center">
+                                <i class="fa-solid fa-book-open mr-2"></i> EXPLORAR SABORES
+                            </a>
+                            <a href="#sobre" class="border-2 border-cream-300/20 hover:border-cream-300 text-cream-200 font-bold px-8 py-4 rounded-xl transition-all text-center">
+                                Conheça o Conceito
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Urban Visual Card -->
+                    <div class="relative flex justify-center">
+                        <div class="w-72 h-80 sm:w-96 sm:h-96 rounded-3xl bg-gradient-to-tr from-chocolate-700 via-chocolate-500 to-streetYellow p-1.5 transform rotate-2 hover:rotate-0 transition-transform duration-300 shadow-2xl">
+                            <div class="w-full h-full bg-navy-900 rounded-[22px] p-6 flex flex-col justify-between relative overflow-hidden">
+                                <div class="absolute -right-8 -bottom-8 opacity-10 text-chocolate-400 font-street text-9xl select-none">
+                                    MB
+                                </div>
+                                <div class="flex justify-between items-start">
+                                    <span class="bg-streetYellow text-navy-950 font-black px-3 py-1 rounded-lg text-xs uppercase shadow-md">100% Artesanal</span>
+                                    <i class="fa-solid fa-crown text-streetYellow text-2xl"></i>
+                                </div>
+
+                                <div class="text-center my-auto py-4">
+                                    <div class="inline-block p-4 bg-navy-950 rounded-2xl border border-chocolate-500/30 mb-3 shadow-inner">
+                                        <i class="fa-solid fa-cubes-stacked text-5xl text-chocolate-400"></i>
+                                    </div>
+                                    <h3 class="font-street text-2xl text-cream-200">Nosso cardápio!</h3>
+                                    <p class="text-xs text-cream-400 mt-1">Ingredientes selecionados, cacau nobre & puro sabor.</p>
+                                </div>
+
+                                <div class="grid grid-cols-3 gap-2 text-center text-xs font-bold border-t border-navy-800 pt-3">
+                                    <div>
+                                        <p class="text-chocolate-400">Puro Cacau</p>
+                                        <p class="text-[10px] text-cream-400">Nobre</p>
+                                    </div>
+                                    <div class="border-x border-navy-800">
+                                        <p class="text-streetYellow">Sem Caô</p>
+                                        <p class="text-[10px] text-cream-400">Qualidade</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-chocolate-400">Gourmet</p>
+                                        <p class="text-[10px] text-cream-400">Sabor 10/10</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre Nós & Objetivos -->
+        <section id="sobre" class="py-20 bg-navy-950">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-chocolate-400 font-extrabold uppercase tracking-widest text-xs">Quem Somos</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold mt-2 text-cream-200 font-street">A RAIZ DO MANO BROWNIE</h2>
+                    <p class="text-cream-400 mt-4 text-base sm:text-lg leading-relaxed">
+                        A <strong class="text-cream-200">Mano Brownie</strong> nasceu para levar sabor e alegria para a rotina das pessoas. Nascemos da vontade de transformar o simples em algo marcante: brownies artesanais, sabores de verdade e uma identidade que tem tudo a ver com a nossa geração.
+                    </p>
+                </div>
+
+                <!-- Mission, Vision & Values Cards -->
+                <div class="grid md:grid-cols-3 gap-8" id="diferenciais">
+                    <!-- Missão -->
+                    <div class="bg-navy-900 p-8 rounded-2xl border border-navy-800 hover:border-chocolate-500/50 transition-all group shadow-xl">
+                        <div class="w-14 h-14 bg-chocolate-500/10 text-chocolate-400 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-cream-200">Nossa Missão</h3>
+                        <p class="text-cream-400 text-sm leading-relaxed">
+                          Alegrar o dia de quem trabalha, criando produtos de qualidade que proporcionem momentos de prazer, descontração e satisfação na rotina das pessoas.
+                        </p>
+                    </div>
+
+                    <!-- Visão -->
+                    <div class="bg-navy-900 p-8 rounded-2xl border border-navy-800 hover:border-chocolate-500/50 transition-all group shadow-xl">
+                        <div class="w-14 h-14 bg-chocolate-500/10 text-streetYellow rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-cream-200">Nossa Visão</h3>
+                        <p class="text-cream-400 text-sm leading-relaxed">
+                           Ser uma marca reconhecida pela qualidade, criatividade e sabor dos nossos doces, conquistando cada vez mais pessoas e levando a identidade da Mano Brownie para todos.
+                        </p>
+                    </div>
+
+                    <!-- Valores -->
+                    <div class="bg-navy-900 p-8 rounded-2xl border border-navy-800 hover:border-chocolate-500/50 transition-all group shadow-xl">
+                        <div class="w-14 h-14 bg-chocolate-500/10 text-chocolate-400 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-gem"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-cream-200">Nossos Valores</h3>
+                        <ul class="text-cream-400 text-sm space-y-2.5">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-streetYellow text-xs"></i> <strong>Sem Caô:</strong> Transparência total no preparo.</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-streetYellow text-xs"></i> <strong>Ingredientes Nobres:</strong> Chocolate 100% de verdade.</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-streetYellow text-xs"></i> <strong>Respeito:</strong> Valorizar pessoas e parceiros.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Interactive Showcase Catalog Section -->
+        <section id="catalogo" class="py-20 bg-navy-900/60 border-t border-b border-navy-800 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-streetYellow font-extrabold uppercase tracking-widest text-xs">Catálogo Oficial</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold mt-2 text-cream-200 font-street">NOSSO MENU DE SABORES</h2>
+                    <p class="text-cream-400 mt-2 text-sm sm:text-base">Navegue pelos nossos doces gourmets e descubra a riqueza dos detalhes de cada receita.</p>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex flex-wrap justify-center gap-3 mb-12">
+                    <button onclick="filterCategory('todos', event)" class="cat-btn active bg-chocolate-500 text-navy-950 font-black px-6 py-2.5 rounded-full text-xs sm:text-sm transition-all shadow-md">
+                        🔥 Todos os Doces
+                    </button>
+                    <button onclick="filterCategory('brownies', event)" class="cat-btn bg-navy-800 text-cream-300 hover:bg-navy-700 font-bold px-6 py-2.5 rounded-full text-xs sm:text-sm transition-all border border-navy-700">
+                        🍫 Brownies Recheados
+                    </button>
+                    <button onclick="filterCategory('brigadeiros', event)" class="cat-btn bg-navy-800 text-cream-300 hover:bg-navy-700 font-bold px-6 py-2.5 rounded-full text-xs sm:text-sm transition-all border border-navy-700">
+                        🍬 Brigadeiros Gourmet
+                    </button>
+                    <button onclick="filterCategory('cones', event)" class="cat-btn bg-navy-800 text-cream-300 hover:bg-navy-700 font-bold px-6 py-2.5 rounded-full text-xs sm:text-sm transition-all border border-navy-700">
+                        🍦 Cones Trufados
+                    </button>
+                </div>
+
+                <!-- Product Showcase Grid -->
+                <div id="product-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Products will be injected dynamically via JS -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Onde Encontrar / Como Encomendar -->
+        <section id="encomendar" class="py-20 bg-navy-950">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-gradient-to-br from-navy-900 to-navy-800 rounded-3xl p-8 sm:p-12 border border-navy-700 shadow-2xl relative overflow-hidden">
+                    
+                    <div class="grid md:grid-cols-2 gap-10 items-center relative z-10">
+                        <div class="space-y-6">
+                            <div>
+                                <span class="text-streetYellow font-extrabold uppercase text-xs tracking-widest">Atendimento Direto</span>
+                                <h2 class="text-3xl sm:text-4xl font-black text-cream-200 mt-1 font-street">COMO DEGUSTAR O MANO BROWNIE?</h2>
+                            </div>
+
+                            <p class="text-cream-400 text-sm leading-relaxed">
+                                Trabalhamos com produções rápidas para garantir o máximo de frescor e crocância em cada lote. Faça seu pedido diretamente conosco e aproveite.
+                            </p>
+
+                            <a href="https://www.instagram.com/o_manobrowniie/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 text-cream-200 bg-navy-950/60 p-3.5 rounded-xl border border-navy-800 hover:border-chocolate-500/50 transition-all cursor-pointer">
+                                <div class="w-10 h-10 rounded-lg bg-chocolate-500/20 flex items-center justify-center text-chocolate-400 text-lg">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-cream-400">Instagram Direct</p>
+                                    <p class="font-bold">@o_manobrowniie</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-navy-950 border-t border-navy-900 py-8 text-xs text-cream-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
+            <div class="flex items-center justify-center gap-2 font-street text-xl text-cream-200">
+                <span>MANO BROWNIE</span>
+                <span class="text-chocolate-500">•</span>
+                <span class="text-xs font-sans text-chocolate-400">SEM CAÔ, SÓ BROWNIE</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced Catalog Data (Purely Showcase - No Online Purchase)
+        const products = [
+            // Categoria 1: Brownies Recheados & Tradicionais
+            {
+                id: 1,
+                name: "Brownie Tradicional",
+                category: "brownies",
+                tag: "O Clássico",
+                desc: "A receita perfeita do brownie artesanal: casquinha craquelada por fora, massa densa e super úmida por dentro, preparada com cacau 100% nobre.",
+                sweetness: "Doçura Equilibrada",
+                ingredients: "Chocolate Nobre, Manteiga, Cacau em Pó 100%, Açúcar Mascavo.",
+                icon: "fa-cookie"
+            },
+            {
+                id: 2,
+                name: "Brownie Ninho & Nutella",
+                category: "brownies",
+                tag: "Queridinho",
+                desc: "Nosso brownie mais famoso, recheado com uma camada generosa de brigadeiro cremoso de Leite Ninho e um topo fartíssimo de Nutella pura.",
+                sweetness: "Doce Intenso & Cremosão",
+                ingredients: "Massa Brownie Tradicional, Leite Ninho, Nutella Original.",
+                icon: "fa-cookie-bite"
+            },
+            {
+                id: 3,
+                name: "Brownie Doce de Leite",
+                category: "brownies",
+                tag: "Chef's Choice",
+                desc: "Recheado com doce de leite cremoso.",
+                sweetness: "Doce com Toque Salgado",
+                ingredients: "Doce de Leite estilo Argentino, Massa Cacau.",
+                icon: "fa-gem"
+            },
+            {
+                id: 4,
+                name: "Brownie Brigadeiro Meio Amargo",
+                category: "brownies",
+                tag: "Puro Cacau",
+                desc: "Para os amantes de chocolate de verdade. Coberto com um brigadeiro denso de chocolate 70% e finalizado com nibs de cacau crocantes.",
+                sweetness: "Amargor Suave & Intenso",
+                ingredients: "Chocolate 70%, Cacau Nibs, Brigadeiro Gourmet Amargo.",
+                icon: "fa-fire"
+            },
+            {
+                id: 5,
+                name: "Brownie Red Velvet c/ Ninho",
+                category: "brownies",
+                tag: "Edição Especial",
+                desc: "Massa aveludada de cor vermelha vibrante com suave sabor de baunilha e cacau, recheada com creme especial de Leite Ninho.",
+                sweetness: "Suave & Cremosinho",
+                ingredients: "Massa Red Velvet, Extrato de Baunilha, Creme de Ninho.",
+                icon: "fa-crown"
+            },
+
+            // Categoria 2: Brigadeiros Gourmet Especiais
+            {
+                id: 6,
+                name: "Brigadeiro Tradicional Belga",
+                category: "brigadeiros",
+                tag: "Insuperável",
+                desc: "Massa aveludada feita com leite condensado de primeira linha e chocolate ao leite belga, coberta com granulados macios nobres.",
+                sweetness: "Clássico Irresistível",
+                ingredients: "Chocolate Ao Leite Belga, Leite Condensado, Granulado Nobre.",
+                icon: "fa-circle"
+            },
+            {
+                id: 7,
+                name: "Brigadeiro Ninho c/ Nutella",
+                category: "brigadeiros",
+                tag: "Mais Pedido",
+                desc: "Massa super cremosa preparada com Leite Ninho de verdade, recheada no centro com Nutella fluida que explode na boca.",
+                sweetness: "Doce Marcante",
+                ingredients: "Leite Ninho, Nutella Pura, Manteiga de Primeira.",
+                icon: "fa-heart"
+            },
+            {
+                id: 8,
+                name: "Brigadeiro de Churros",
+                category: "brigadeiros",
+                tag: "Nostálgico",
+                desc: "Massa rica de doce de leite cozido com toque sutil de canela, enrolada no açúcar crocante e decorada com pitanga de doce de leite.",
+                sweetness: "Doce & Aromático",
+                ingredients: "Doce de Leite Caseiro, Canela em Pó, Açúcar Cristal.",
+                icon: "fa-star"
+            },
+            {
+                id: 9,
+                name: "Brigadeiro de Morango",
+                category: "brigadeiros",
+                tag: "Sabor Infância",
+                desc: "Brigadeiro rosado gourmet feito com redução de morangos e toque cremoso de leite em pó. Pura nostalgia e doçura na medida.",
+                sweetness: "Frutado & Suave",
+                ingredients: "Redução de Morango Natural, Leite Condensado, Açúcar de Confeiteiro.",
+                icon: "fa-stroopwafel"
+            },
+            {
+                id: 10,
+                name: "Brigadeiro de Pistache Premium",
+                category: "brigadeiros",
+                tag: "Linha Ouro",
+                desc: "Elaborado com pasta 100% pura de pistache refinado e envolto em xerém de pistache torrado crocante para uma textura impecável.",
+                sweetness: "Sofisticado & Suave",
+                ingredients: "Pasta Pura de Pistache, Chocolate Branco Nobre, Pistache Torrado.",
+                icon: "fa-gem"
+            },
+
+            // Categoria 3: Cones Trufados Crocantes
+            {
+                id: 11,
+                name: "Cone Trufado de Prestígio",
+                category: "cones",
+                tag: "Crocante Supremo",
+                desc: "Casquinha de sorvete banhada interna e externamente em chocolate meio amargo, recheada até o topo com beijinho de coco artesanal.",
+                sweetness: "Coco Cremosinho & Cacau",
+                ingredients: "Casquinha Crocante, Beijinho de Coco, Chocolate Meio Amargo.",
+                icon: "fa-ice-cream"
+            },
+            {
+                id: 12,
+                name: "Cone Trufado Oreo Cream",
+                category: "cones",
+                tag: "Novidade",
+                desc: "Recheio espesso de creme de baunilha com pedaços reais crocantes de biscoito Oreo, envolvido em cobertura de chocolate branco.",
+                sweetness: "Extracrocante",
+                ingredients: "Biscoito Oreo, Chocolate Branco Nobre, Baunilha.",
+                icon: "fa-ice-cream"
+            },
+            {
+                id: 13,
+                name: "Cone Maracujá c/ Choc. Amargo",
+                category: "cones",
+                tag: "Agridoce Top",
+                desc: "O contraste perfeito do mousse azedinho de maracujá natural com uma ganache bem densa de chocolate meio amargo 50%.",
+                sweetness: "Azedinho & Amargo",
+                ingredients: "Suco Concentrado de Maracujá, Ganache Meio Amargo.",
+                icon: "fa-ice-cream"
+            },
+            {
+                id: 14,
+                name: "Cone Trufado Kinder Bueno",
+                category: "cones",
+                tag: "Gourmet Max",
+                desc: "Inspirado no famoso bombom: creme de avelã branco super cremoso com pedacinhos de wafer crocante e ganache de chocolate ao leite.",
+                sweetness: "Rico em Avelã",
+                ingredients: "Creme de Avelã Branco, Wafer, Chocolate Ao Leite.",
+                icon: "fa-ice-cream"
+            }
+        ];
+
+        // Render Product Showcase Cards
+        function renderProducts(items) {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+
+            items.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'bg-navy-900 rounded-2xl border border-navy-800 overflow-hidden flex flex-col justify-between hover:border-chocolate-500/50 transition-all duration-300 transform hover:-translate-y-1 shadow-xl group';
+                
+                card.innerHTML = `
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="bg-chocolate-500/20 text-chocolate-400 font-extrabold text-xs px-3 py-1 rounded-full border border-chocolate-500/30">
+                                ${product.tag}
+                            </span>
+                            <div class="w-10 h-10 rounded-xl bg-navy-950 flex items-center justify-center text-streetYellow border border-navy-800 group-hover:border-chocolate-500/40 transition-colors">
+                                <i class="fa-solid ${product.icon} text-lg"></i>
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-xl font-extrabold text-cream-200 mb-2 group-hover:text-chocolate-400 transition-colors">${product.name}</h3>
+                        <p class="text-cream-400 text-xs leading-relaxed mb-4">${product.desc}</p>
+                    </div>
+
+                    <div class="px-6 pb-6 pt-3 border-t border-navy-800/80 bg-navy-950/40 space-y-2">
+                        <div class="flex items-center justify-between text-[11px]">
+                            <span class="text-cream-400 font-semibold"><i class="fa-solid fa-gauge-high text-streetYellow mr-1"></i> Perfil:</span>
+                            <span class="text-chocolate-400 font-bold">${product.sweetness}</span>
+                        </div>
+                        <div class="text-[10px] text-cream-400/80 line-clamp-1">
+                            <strong class="text-cream-300">Base:</strong> ${product.ingredients}
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Category Filter
+        function filterCategory(category, e) {
+            const buttons = document.querySelectorAll('.cat-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-chocolate-500', 'text-navy-950', 'font-black');
+                btn.classList.add('bg-navy-800', 'text-cream-300');
+            });
+
+            if (e && e.currentTarget) {
+                e.currentTarget.classList.remove('bg-navy-800', 'text-cream-300');
+                e.currentTarget.classList.add('bg-chocolate-500', 'text-navy-950', 'font-black');
+            }
+
+            if (category === 'todos') {
+                renderProducts(products);
+            } else {
+                const filtered = products.filter(p => p.category === category);
+                renderProducts(filtered);
+            }
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Initialize Catalog on Page Load
+        window.onload = function() {
+            renderProducts(products);
+        };
+    </script>
+</body>
+</html>
